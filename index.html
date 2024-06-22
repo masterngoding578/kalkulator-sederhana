@@ -1,32 +1,95 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            font-family: 'Creepster', cursive;
+            background-color: #000;
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-image: url('bg.jpg');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .container {
+            background: rgba(0, 0, 0, 0.8);
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 20px rgba(255, 0, 0, 0.8);
+            text-align: center;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+            color: #ff0000;
+            text-shadow: 2px 2px #000;
+        }
+
+        form {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #ff0000;
+            text-shadow: 1px 1px #000;
+        }
+
+        input {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 20px;
+            border: 1px solid #ff0000;
+            border-radius: 4px;
+            background: #111;
+            color: #fff;
+        }
+
+        button {
+            padding: 10px 15px;
+            border: none;
+            background-color: #ff0000;
+            color: white;
+            border-radius: 4px;
+            cursor: pointer;
+            font-family: 'Creepster', cursive;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #b30000;
+        }
+
+        #result {
+            font-size: 18px;
+            font-weight: bold;
+            color: #ff0000;
+            text-shadow: 1px 1px #000;
+            text-transform: capitalize;
+        }
+    </style>
 </head>
+
 <body>
-  <form class="kalkulator" name="calc">
-    <input type="text" class="value" name="txt" readonly="">
-    <span class="num clear" onclick="document.calc.txt.value = ''">C</span>
-    <span class="num" onclick="document.calc.txt.value += '/'">/</span>
-    <span class="num" onclick="document.calc.txt.value += '*'">x</span>
-    <span class="num" onclick="document.calc.txt.value += '7'">7</span>
-    <span class="num" onclick="document.calc.txt.value += '8'">8</span>
-    <span class="num" onclick="document.calc.txt.value += '9'">9</span>
-    <span class="num" onclick="document.calc.txt.value += '_'">-</span>
-    <span class="num" onclick="document.calc.txt.value += '4'">4</span>
-    <span class="num" onclick="document.calc.txt.value += '5'">5</span>
-    <span class="num" onclick="document.calc.txt.value += '6'">6</span>
-    <span class="num plus" onclick="document.calc.txt.value += '+'">+</span>
-    <span class="num" onclick="document.calc.txt.value += '1'">1</span>
-    <span class="num" onclick="document.calc.txt.value += '2'">2</span>
-    <span class="num" onclick="document.calc.txt.value += '3'">3</span>
-    <span class="num" onclick="document.calc.txt.value += '0'">0</span>
-    <span class="num" onclick="document.calc.txt.value += '00'">00</span>
-    <span class="num" onclick="document.calc.txt.value += '.'">.</span>
-    <span class="num equal" onclick="document.calc.txt.value =eval(calc.txt.value)">=</span>
+    <div class="container">
+        <h1>Cek Khodam Kamu</h1>
+        <form id="kodamForm">
+            <label for="name">Nama:</label>
+            <input type="text" id="name" name="name" required>
+            <button type="submit">Cek Zodiak</button>
+        </form>
+        <div id="result"></div>
+    </div>
 
 
 
@@ -34,8 +97,28 @@
 
 
 
+    <script>
+        document.getElementById('kodamForm').onsubmit = function (event) {
+            event.preventDefault();
 
-  </form>
-  
+            const name = document.getElementById('name').value;
+            const kodam = getKodam(name);
+
+            document.getElementById('result').textContent = `Halo ${name}, Kodam kamu adalah ${kodam}`;
+        };
+
+        function getKodam(name) {
+            const kodams = [
+                'ambatron', 'harimau sumatra', 'gogon tunjang','naga metal', 'kak gem','t-rex',
+                'prabu siliwangi', 'Wewe Gombel', 'Jelangkung', 'Garuda',
+                'Banaspati', 'mas faiz', 'Hensen', 'kosong'
+            ];
+            const charSum = [...name].reduce((acc, char) => acc + char.charCodeAt(0), 0);
+            return kodams[charSum % kodams.length];
+        }
+
+
+    </script>
 </body>
+
 </html>
