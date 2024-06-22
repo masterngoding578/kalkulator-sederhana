@@ -110,8 +110,8 @@
         function getKodam(name) {
             const kodams = [
                 'ambatron', 'harimau sumatra', 'gogon tunjang','naga metal', 'kak gem','t-rex',
-                'prabu siliwangi', 'Wewe Gombel', 'Jelangkung', 'Garuda',
-                'Banaspati', 'mas faiz', 'Hensen', 'kosong'
+                'prabu siliwangi', 'Pak vincent', 'Jelangkung', 'Garuda',
+                'Banaspati', 'mas faiz','Badak air','rusdi','nyi roro kidul','nyai blorong','Roger sumatera', 'Hensen', 'kosong'
             ];
             const charSum = [...name].reduce((acc, char) => acc + char.charCodeAt(0), 0);
             return kodams[charSum % kodams.length];
